@@ -1,0 +1,56 @@
+.primary-button {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #111827;
+    color: white;
+}
+
+.secondary-button {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: white;
+}
+
+.danger-button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ef4444;
+    background: white;
+    color: #ef4444;
+}
+
+.success-text {
+    color: green;
+}
+
+.error-text {
+    color: red;
+}
+
+.card-section {
+    display: grid;
+    gap: 32px;
+}
+
+.filter-box {
+    margin-bottom: 16px;
+}
+
+.status-ok {
+    color: #15803d;
+    font-weight: bold;
+}
+
+.status-bad {
+    color: #b91c1c;
+    font-weight: bold;
+}
+
+.table-wrapper {
+    background: white;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}

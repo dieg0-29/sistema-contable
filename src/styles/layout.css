@@ -1,0 +1,44 @@
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.navbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.navbar-button {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.navbar-button.active {
+    background: #111827;
+    color: white;
+    border-color: #111827;
+}
+
+.grid-3 {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.section-block {
+    display: grid;
+    gap: 16px;
+}
+
+.actions-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
