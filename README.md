@@ -10,11 +10,27 @@ Sirve para registrar transacciones contables y generar:
 ## Tecnologías
 - React
 - Vite
+- FastAPI
 - Supabase
 
 ## Instalación
+
+**Frontend:**
 ```
 npm install
+```
+**Backend:**
+```
+pip install -r requirements.txt
+```
+**Despliegue:** Desde dos terminales distintas
+
+- **Terminal 1:** Backend
+```
+uvicorn app.main:app --reload
+```
+- **Terminal 2:** Frontend
+```
 npm run dev
 ```
 
