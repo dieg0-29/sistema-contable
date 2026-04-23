@@ -25,9 +25,8 @@ class DetalleTransaccionIn(BaseModel):
 
 
 class TransaccionCreate(BaseModel):
-    numero_operacion: str
     fecha_tsc: date
-    detalle: str
+    glosa: str
     lineas: List[DetalleTransaccionIn]
 
 
@@ -40,7 +39,7 @@ class LibroDiarioOut(BaseModel):
     id_tsc: int
     numero_operacion: str
     fecha_tsc: date
-    detalle: str
+    glosa: str
     id_cuenta: int
     cod_cuenta: str
     descp_cuenta: str
@@ -58,7 +57,7 @@ class LibroMayorOut(BaseModel):
     id_tsc: int
     numero_operacion: str
     fecha_tsc: date
-    detalle: str
+    glosa: str
     id_detalle: int
     descripcion_linea: Optional[str] = None
     debe: float

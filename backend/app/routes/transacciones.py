@@ -24,10 +24,14 @@ def crear_transaccion(payload: TransaccionCreate, db: Session = Depends(get_db))
         if linea.debe <= 0 and linea.haber <= 0:
             raise HTTPException(status_code=400, detail=f"Debes ingresar un monto en la línea {i}")
 
+    total_debe = sum(linea.debe for linea in payload.lineas)
+    total_haber = sum(linea.haber for linea in payload.lineas)
+
     nueva_transaccion = Transaccion(
-        numero_operacion=payload.numero_operacion,
         fecha_tsc=payload.fecha_tsc,
-        detalle=payload.detalle
+        glosa=payload.glosa,
+        total_debe=total_debe,
+        total_haber=total_haber
     )
 
     db.add(nueva_transaccion)

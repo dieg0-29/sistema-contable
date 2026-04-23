@@ -18,9 +18,8 @@ export default function TransaccionForm({ onGuardado }) {
   const [error, setError] = useState('')
 
   const [form, setForm] = useState({
-    numeroOperacion: '',
     fecha: '',
-    detalle: '',
+    glosa: '',
     lineas: [{ ...lineaBase }, { ...lineaBase }]
   })
 
@@ -93,9 +92,8 @@ export default function TransaccionForm({ onGuardado }) {
   const cuadra = totalDebe > 0 && totalDebe === totalHaber
 
   function validar() {
-    if (!form.numeroOperacion.trim()) return 'Ingresa el número de operación'
     if (!form.fecha) return 'Selecciona una fecha'
-    if (!form.detalle.trim()) return 'Ingresa el detalle'
+    if (!form.glosa.trim()) return 'Ingresa la glosa'
 
     for (let i = 0; i < form.lineas.length; i++) {
       const linea = form.lineas[i]
@@ -138,7 +136,7 @@ export default function TransaccionForm({ onGuardado }) {
       await guardarTransaccionCompleta({
         numeroOperacion: form.numeroOperacion,
         fecha: form.fecha,
-        detalle: form.detalle,
+        glosa: form.glosa,
         lineas: form.lineas
       })
 
@@ -146,7 +144,7 @@ export default function TransaccionForm({ onGuardado }) {
       setForm({
         numeroOperacion: '',
         fecha: '',
-        detalle: '',
+        glosa: '',
         lineas: [{ ...lineaBase }, { ...lineaBase }]
       })
 
@@ -164,17 +162,6 @@ export default function TransaccionForm({ onGuardado }) {
 
       <div className="grid-3">
         <div>
-          <label htmlFor="numeroOperacion">Número de operación</label>
-          <input
-            id="numeroOperacion"
-            type="text"
-            name="numeroOperacion"
-            value={form.numeroOperacion}
-            onChange={actualizarCampo}
-          />
-        </div>
-
-        <div>
           <label htmlFor="fecha">Fecha</label>
           <input
             id="fecha"
@@ -186,12 +173,12 @@ export default function TransaccionForm({ onGuardado }) {
         </div>
 
         <div>
-          <label htmlFor="detalle">Detalle</label>
+          <label htmlFor="glosa">Glosa</label>
           <input
-            id="detalle"
+            id="glosa"
             type="text"
-            name="detalle"
-            value={form.detalle}
+            name="glosa"
+            value={form.glosa}
             onChange={actualizarCampo}
           />
         </div>

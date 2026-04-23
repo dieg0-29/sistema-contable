@@ -1,10 +1,9 @@
 const API_URL = import.meta.env.VITE_API_URL
 
-export async function guardarTransaccionCompleta({ numeroOperacion, fecha, detalle, lineas }) {
+export async function guardarTransaccionCompleta({ numeroOperacion, fecha, glosa, lineas }) {
     const payload = {
-        numero_operacion: numeroOperacion,
         fecha_tsc: fecha,
-        detalle,
+        glosa,
         lineas: lineas.map((linea) => ({
             id_cuenta: Number(linea.id_cuenta),
             descripcion_linea: linea.descripcion_linea || null,

@@ -55,19 +55,19 @@ export default function MayorTable({ data, loading, error }) {
                             <th>Cuenta</th>
                             <th>Fecha</th>
                             <th>N° Operación</th>
-                            <th>Detalle</th>
+                            <th>Glosa</th>
                             <th>Debe</th>
                             <th>Haber</th>
                         </tr>
                     </thead>
                     <tbody>
                         {dataFiltrada.map((item) => (
-                            <tr key={item.id_detalle}>
+                            <tr key={`${item.id_tsc}-${item.id_detalle}-${item.orden}`}>
                                 <td>{item.cod_cuenta}</td>
                                 <td>{item.descp_cuenta}</td>
                                 <td>{item.fecha_tsc}</td>
                                 <td>{item.numero_operacion}</td>
-                                <td>{item.detalle}</td>
+                                <td>{item.glosa}</td>
                                 <td className="amount-cell">{Number(item.debe).toFixed(2)}</td>
                                 <td className="amount-cell">{Number(item.haber).toFixed(2)}</td>
                             </tr>

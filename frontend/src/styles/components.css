@@ -59,3 +59,78 @@
     text-align: center;
     background-color: rgb(134, 165, 225);
 }
+
+.diario-header {
+    display: grid;
+    grid-template-columns: 50px 1fr 140px 140px;
+    gap: 16px;
+    align-items: center;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.diario-col-title {
+    text-align: center;
+}
+
+.diario-list {
+    display: grid;
+    gap: 16px;
+}
+
+.diario-card {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 16px;
+    background: #fff;
+    padding: 16px 20px;
+    border-radius: 8px;
+}
+
+.diario-index {
+    font-size: 2rem;
+    line-height: 1;
+    align-self: start;
+}
+
+.diario-content {
+    display: grid;
+    gap: 12px;
+}
+
+.diario-linea {
+    display: grid;
+    grid-template-columns: 140px 1fr 140px 140px;
+    gap: 16px;
+    align-items: start;
+    color: #0066c0;
+    font-weight: 700;
+}
+
+.diario-linea-principal .diario-cuenta {
+    padding-left: 0;
+}
+
+.diario-linea-secundaria .diario-cuenta {
+    padding-left: 40px;
+}
+
+.diario-fecha {
+    color: #111827;
+    font-weight: 600;
+}
+
+.diario-cuenta {
+    text-align: left;
+}
+
+.diario-monto {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.diario-glosa {
+    padding-left: 155px;
+    color: #7a7a7a;
+    font-style: italic;
+}
