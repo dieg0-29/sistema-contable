@@ -14,13 +14,14 @@
 .navbar-button {
     padding: 10px 14px;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    background: #fff;
+    border: 1px solid #000;
+    background: rgb(134, 165, 225);
+    color: #000
 }
 
 .navbar-button.active {
-    background: #111827;
-    color: white;
+    background: rgb(40, 49, 66);
+    color: rgb(155, 178, 225);
     border-color: #111827;
 }
 

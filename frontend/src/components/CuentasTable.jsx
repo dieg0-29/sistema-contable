@@ -10,12 +10,12 @@ export default function CuentasTable({ cuentas, loading, error }) {
       <table>
         <thead>
           <tr>
-            <th>Código</th>
-            <th>Descripción</th>
-            <th>Clasificación</th>
-            <th>Naturaleza</th>
-            <th>Nivel</th>
-            <th>Movimiento</th>
+            <th className="table-header">Código</th>
+            <th className="table-header">Descripción</th>
+            <th className="table-header">Clasificación</th>
+            <th className="table-header">Naturaleza</th>
+            <th className="table-header">Nivel</th>
+            <th className="table-header">Movimiento</th>
           </tr>
         </thead>
         <tbody>

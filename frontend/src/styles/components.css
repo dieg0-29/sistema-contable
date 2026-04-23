@@ -3,7 +3,7 @@
     border-radius: 8px;
     border: none;
     background: #111827;
-    color: white;
+    color: rgb(181, 197, 225);
 }
 
 .secondary-button {
@@ -53,4 +53,9 @@
     padding: 16px;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.table-header {
+    text-align: center;
+    background-color: rgb(134, 165, 225);
 }
