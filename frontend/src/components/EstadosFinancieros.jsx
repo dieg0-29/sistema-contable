@@ -28,7 +28,9 @@ export default function EstadosFinancieros({
                                 </tr>
                             </thead>
                             <tbody>
-                                {balance.map((item) => (
+                                {balance
+                                .filter(item => Number(item.saldo) !== 0)
+                                .map((item) => (
                                     <tr key={item.id_cuenta}>
                                         <td>{item.cod_cuenta}</td>
                                         <td>{item.descp_cuenta}</td>
@@ -62,7 +64,9 @@ export default function EstadosFinancieros({
                                 </tr>
                             </thead>
                             <tbody>
-                                {resultados.map((item) => (
+                                {resultados
+                                .filter(item => Number(item.saldo) !== 0)
+                                .map((item) => (
                                     <tr key={item.id_cuenta}>
                                         <td>{item.cod_cuenta}</td>
                                         <td>{item.descp_cuenta}</td>

@@ -224,6 +224,8 @@ export default function TransaccionForm({ onGuardado }) {
                   <td>
                     <input
                       type="number"
+                      className="no-spinner"
+                      inputMode="decimal"
                       min="0"
                       step="0.01"
                       value={linea.debe}
@@ -236,6 +238,8 @@ export default function TransaccionForm({ onGuardado }) {
                   <td>
                     <input
                       type="number"
+                      className="no-spinner"
+                      inputMode="decimal"
                       min="0"
                       step="0.01"
                       value={linea.haber}
