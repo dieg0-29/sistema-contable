@@ -214,17 +214,17 @@ export default function EstadosFinancierosPeriodo({
 function construirESF(balance) {
     const activo = balance.filter(item => 
         item.clasificacion_cuenta?.toUpperCase().includes('ACTIVO')
-    ).filter(item => Number(item.saldo) !== 0)
+    )
     
     const pasivo = balance.filter(item => 
         item.clasificacion_cuenta?.toUpperCase().includes('PASIVO')
-    ).filter(item => Number(item.saldo) !== 0)
+    )
     
     const patrimonio = balance.filter(item => {
         const clase = item.clasificacion_cuenta?.toUpperCase() || ''
         return (clase.includes('PATRIMONIO') || clase.includes('CAPITAL') || clase.includes('RESULTADO'))
             && !clase.includes('ACTIVO') && !clase.includes('PASIVO')
-    }).filter(item => Number(item.saldo) !== 0)
+    })
 
     const totalActivo = activo.reduce((sum, item) => sum + Number(item.saldo), 0)
     const totalPasivo = pasivo.reduce((sum, item) => sum + Number(item.saldo), 0)
@@ -246,13 +246,13 @@ function construirESF(balance) {
 function construirER(resultados) {
     const ingresos = resultados.filter(item => 
         item.clasificacion_cuenta?.toUpperCase().includes('INGRESO')
-    ).filter(item => Number(item.saldo) !== 0)
+    )
     
     const costos = resultados.filter(item => {
         const clase = item.clasificacion_cuenta?.toUpperCase() || ''
         return (clase.includes('COSTO') || clase.includes('GASTO') || clase.includes('PÉRDIDA'))
             && !clase.includes('INGRESO')
-    }).filter(item => Number(item.saldo) !== 0)
+    })
 
     const totalIngresos = ingresos.reduce((sum, item) => sum + Number(item.saldo), 0)
     const totalCostos = costos.reduce((sum, item) => sum + Number(item.saldo), 0)
