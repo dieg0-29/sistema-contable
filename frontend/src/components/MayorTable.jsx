@@ -3,77 +3,155 @@ import { useMemo, useState } from 'react'
 export default function MayorTable({ data, loading, error }) {
     const [filtroCuenta, setFiltroCuenta] = useState('')
 
-    const cuentasUnicas = useMemo(() => {
-        const mapa = new Map()
+    // Función interna para formatear fecha a DD/MM/AAAA
+    const formatearFecha = (fechaStr) => {
+        if (!fechaStr) return ''
+        const [year, month, day] = fechaStr.split('-')
+        return `${day}/${month}/${year}`
+    }
 
+    const cuentasAgrupadas = useMemo(() => {
+        const grupos = {}
         data.forEach((item) => {
-            if (!mapa.has(item.cod_cuenta)) {
-                mapa.set(item.cod_cuenta, {
-                    cod_cuenta: item.cod_cuenta,
-                    descp_cuenta: item.descp_cuenta
-                })
+            if (!grupos[item.cod_cuenta]) {
+                grupos[item.cod_cuenta] = {
+                    codigo: item.cod_cuenta,
+                    nombre: item.descp_cuenta,
+                    movimientos: []
+                }
             }
+            grupos[item.cod_cuenta].movimientos.push(item)
         })
 
-        return Array.from(mapa.values())
-    }, [data])
-
-    const dataFiltrada = useMemo(() => {
-        if (!filtroCuenta) return data
-        return data.filter((item) => item.cod_cuenta === filtroCuenta)
+        if (filtroCuenta) {
+            return Object.values(grupos).filter(g => g.codigo === filtroCuenta)
+        }
+        return Object.values(grupos)
     }, [data, filtroCuenta])
+
+    const opcionesFiltro = useMemo(() => {
+        const mapa = new Map()
+        data.forEach(item => mapa.set(item.cod_cuenta, item.descp_cuenta))
+        return Array.from(mapa.entries())
+    }, [data])
 
     if (loading) return <p>Cargando libro mayor...</p>
     if (error) return <p className="error-text">{error}</p>
-    if (!data.length) return <p>No hay movimientos en el libro mayor.</p>
+    if (!data.length) return <p>No hay movimientos.</p>
 
     return (
         <div className="section-block">
-            <h2>Libro mayor</h2>
+            <h2 style={{ marginBottom: '25px', fontSize: '1.8rem' }}>Libro Mayor</h2>
 
-            <div className="filter-box">
-                <label htmlFor="filtroCuenta">Filtrar por cuenta: </label>
-                <select
-                    id="filtroCuenta"
-                    value={filtroCuenta}
+            <div className="filter-box" style={{ marginBottom: '35px' }}>
+                <label style={{ fontSize: '1.1rem' }}>Filtrar por cuenta: </label>
+                <select 
+                    value={filtroCuenta} 
                     onChange={(e) => setFiltroCuenta(e.target.value)}
+                    style={{ fontSize: '1.1rem', padding: '5px 10px', borderRadius: '8px' }}
                 >
                     <option value="">Todas</option>
-                    {cuentasUnicas.map((cuenta) => (
-                        <option key={cuenta.cod_cuenta} value={cuenta.cod_cuenta}>
-                            {cuenta.cod_cuenta} - {cuenta.descp_cuenta}
-                        </option>
+                    {opcionesFiltro.map(([cod, desc]) => (
+                        <option key={cod} value={cod}>{cod} - {desc}</option>
                     ))}
                 </select>
             </div>
 
-            <div className="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Cuenta</th>
-                            <th>Fecha</th>
-                            <th>N° Operación</th>
-                            <th>Glosa</th>
-                            <th>Debe</th>
-                            <th>Haber</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dataFiltrada.map((item) => (
-                            <tr key={`${item.id_tsc}-${item.id_detalle}-${item.orden}`}>
-                                <td>{item.cod_cuenta}</td>
-                                <td>{item.descp_cuenta}</td>
-                                <td>{item.fecha_tsc}</td>
-                                <td>{item.numero_operacion}</td>
-                                <td>{item.glosa}</td>
-                                <td className="amount-cell">{Number(item.debe).toFixed(2)}</td>
-                                <td className="amount-cell">{Number(item.haber).toFixed(2)}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', 
+                gap: '35px' 
+            }}>
+                {cuentasAgrupadas.map((cuenta) => {
+                    const sumaDebe = cuenta.movimientos.reduce((acc, m) => acc + Number(m.debe), 0)
+                    const sumaHaber = cuenta.movimientos.reduce((acc, m) => acc + Number(m.haber), 0)
+                    const saldo = sumaDebe - sumaHaber
+
+                    return (
+                        <div key={cuenta.codigo} style={{ 
+                            backgroundColor: '#ffffff', 
+                            padding: '30px', 
+                            borderRadius: '15px', 
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.06)',
+                            border: '1px solid #e2e8f0'
+                        }}>
+                            <div style={{ 
+                                textAlign: 'center', 
+                                borderBottom: '3px solid #1a202c', 
+                                paddingBottom: '15px',
+                                marginBottom: '20px',
+                                fontWeight: '800',
+                                fontSize: '1.3rem',
+                                color: '#1a202c'
+                            }}>
+                                {cuenta.codigo} {cuenta.nombre}
+                            </div>
+
+                            <div style={{ 
+                                display: 'flex', 
+                                justifyContent: 'space-between', 
+                                fontWeight: '800', 
+                                fontSize: '1rem', 
+                                color: '#4a5568',
+                                textTransform: 'uppercase',
+                                marginBottom: '12px'
+                            }}>
+                                <span style={{ flex: 1, textAlign: 'center' }}>DEBER</span>
+                                <span style={{ flex: 1, textAlign: 'center' }}>HABER</span>
+                            </div>
+
+                            <div style={{ display: 'flex' }}>
+                                {/* Columna DEBER */}
+                                <div style={{ flex: 1, borderRight: '3px solid #1a202c', paddingRight: '20px' }}>
+                                    {cuenta.movimientos.map((m, i) => m.debe > 0 && (
+                                        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.1rem', marginBottom: '10px' }}>
+                                            <span style={{ color: '#718096', fontSize: '0.95rem' }}>{formatearFecha(m.fecha_tsc)}</span>
+                                            <span style={{ fontWeight: '600' }}>{Number(m.debe).toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                                        </div>
+                                    ))}
+                                    {saldo > 0 && (
+                                        <div style={{ 
+                                            marginTop: '30px', 
+                                            borderTop: '2px solid #1a202c', 
+                                            paddingTop: '12px', 
+                                            display: 'flex', 
+                                            justifyContent: 'space-between', 
+                                            fontWeight: '800',
+                                            fontSize: '1.2rem'
+                                        }}>
+                                            <span style={{ fontSize: '1rem' }}>Saldo Final</span>
+                                            <span>{saldo.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Columna HABER */}
+                                <div style={{ flex: 1, paddingLeft: '20px' }}>
+                                    {cuenta.movimientos.map((m, i) => m.haber > 0 && (
+                                        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.1rem', marginBottom: '10px' }}>
+                                            <span style={{ color: '#718096', fontSize: '0.95rem' }}>{formatearFecha(m.fecha_tsc)}</span>
+                                            <span style={{ fontWeight: '600' }}>{Number(m.haber).toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                                        </div>
+                                    ))}
+                                    {saldo < 0 && (
+                                        <div style={{ 
+                                            marginTop: '30px', 
+                                            borderTop: '2px solid #1a202c', 
+                                            paddingTop: '12px', 
+                                            display: 'flex', 
+                                            justifyContent: 'space-between', 
+                                            fontWeight: '800',
+                                            fontSize: '1.2rem'
+                                        }}>
+                                            <span style={{ fontSize: '1rem' }}>Saldo Final</span>
+                                            <span>{Math.abs(saldo).toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )
