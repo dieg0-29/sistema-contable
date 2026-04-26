@@ -4,7 +4,8 @@ export default function Navbar({ vista, setVista }) {
     { key: 'transacciones', label: 'Nueva transacción' },
     { key: 'diario', label: 'Libro diario' },
     { key: 'mayor', label: 'Libro mayor' },
-    { key: 'estados', label: 'Estados financieros' }
+    { key: 'estados', label: 'Estados financieros' },
+    { key: 'esf-er', label: 'ESF y Estado de Resultados' }
   ]
 
   return (

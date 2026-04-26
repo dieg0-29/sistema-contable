@@ -5,6 +5,7 @@ import TransaccionForm from './components/TransaccionForm'
 import DiarioTable from './components/DiarioTable'
 import MayorTable from './components/MayorTable'
 import EstadosFinancieros from './components/EstadosFinancieros'
+import EstadosFinancierosPeriodo from './components/EstadosFinancierosPeriodo'
 import { obtenerCuentas } from './services/cuentasService'
 import {
   obtenerBalanceGeneral,
@@ -49,7 +50,7 @@ function App() {
         setMayor(data)
       }
 
-      if (vistaActual === 'estados') {
+      if (vistaActual === 'estados' || vistaActual === 'esf-er') {
         const [dataBalance, dataResultados] = await Promise.all([
           obtenerBalanceGeneral(),
           obtenerEstadoResultados()
@@ -76,7 +77,7 @@ function App() {
       setMayor(data)
     }
 
-    if (vista === 'estados') {
+    if (vista === 'estados' || vista === 'esf-er') {
       const [dataBalance, dataResultados] = await Promise.all([
         obtenerBalanceGeneral(),
         obtenerEstadoResultados()
@@ -111,6 +112,15 @@ function App() {
 
       {vista === 'estados' && (
         <EstadosFinancieros
+          balance={balance}
+          resultados={resultados}
+          loading={loading}
+          error={error}
+        />
+      )}
+
+      {vista === 'esf-er' && (
+        <EstadosFinancierosPeriodo
           balance={balance}
           resultados={resultados}
           loading={loading}

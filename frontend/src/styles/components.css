@@ -144,3 +144,26 @@ input[type="number"].no-spinner::-webkit-inner-spin-button {
 input[type="number"].no-spinner {
   -moz-appearance: textfield;
 }
+
+/* Estilos para secciones de estados financieros */
+.section-header {
+    background-color: rgb(134, 165, 225);
+    font-weight: bold;
+}
+
+.subtotal-row {
+    background-color: #f3f4f6;
+    font-weight: 600;
+    border-top: 1px solid #d1d5db;
+}
+
+.total-row {
+    background-color: rgb(134, 165, 225);
+    font-weight: bold;
+    border-top: 2px solid #111827;
+}
+
+.amount-cell {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
