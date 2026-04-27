@@ -1,9 +1,6 @@
 import { useMemo } from 'react';
 
 export default function EstadosFinancierosPeriodo({ balance, resultados, loading, error }) {
-    if (loading) return <p style={{ textAlign: 'center', padding: '40px' }}>Cargando reportes financieros...</p>;
-    if (error) return <p style={{ color: 'red', textAlign: 'center', padding: '20px' }}>{error}</p>;
-
     const formatSoles = (amount) => 
         Number(amount).toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -14,13 +11,18 @@ export default function EstadosFinancierosPeriodo({ balance, resultados, loading
                 .filter(i => i.clasificacion_cuenta?.toUpperCase().includes(keyword))
                 .reduce((s, i) => s + Number(i.saldo), 0);
 
-        const ventas = sumByClass('INGRESO') - sumByClass('DONACIÓN'); // Ingresos operativos netos
+        const sumByCode = (code) =>
+            resultados
+                .filter(i => i.cod_cuenta?.toString().startsWith(code))
+                .reduce((s, i) => s + Number(i.saldo), 0);
+
+        const ventas = sumByClass('INGRESO') - sumByClass('DONACIÓN') - sumByCode('75'); // Ingresos operativos netos
         const costoVenta = sumByClass('COSTO'); 
-        const gastosOp = sumByClass('GASTO') - sumByClass('PÉRDIDA'); // Gastos operativos (sin pérdidas extra)
+        const gastosOp = sumByClass('GASTO') - sumByClass('PÉRDIDA')- sumByCode('66'); // Gastos operativos (sin pérdidas extra)
         
-        // Cuentas específicas que pediste
-        const otrosGastos = sumByClass('PÉRDIDA'); 
-        const otrosIngresos = sumByClass('DONACIÓN');
+        // Cuentas específicas que pediste (PÉRDIDA + código 66 pérdidas por medición)
+        const otrosGastos = sumByClass('PÉRDIDA') + sumByCode('66');
+        const otrosIngresos = sumByClass('DONACIÓN') + sumByCode('75');
 
         const utilidadBruta = ventas - costoVenta;
         const utilidadOperativa = utilidadBruta - gastosOp;
@@ -41,6 +43,9 @@ export default function EstadosFinancierosPeriodo({ balance, resultados, loading
     }, [resultados]);
 
     const esf = useMemo(() => construirESF(balance, er.utilidadNeta), [balance, er.utilidadNeta]);
+
+    if (loading) return <p style={{ textAlign: 'center', padding: '40px' }}>Cargando reportes financieros...</p>;
+    if (error) return <p style={{ color: 'red', textAlign: 'center', padding: '20px' }}>{error}</p>;
 
     const RenderTableSection = ({ title, items, total, showTotal = true }) => {
         const itemsFiltrados = items.filter(item => Math.abs(Number(item.saldo)) > 0.001);
@@ -152,7 +157,7 @@ export default function EstadosFinancierosPeriodo({ balance, resultados, loading
                         {/* FILAS NUEVAS */}
                         <tr style={{ borderBottom: '1px solid #edf2f7' }}>
                             <td style={{ padding: '12px' }}>OTROS GASTOS (- PÉRDIDAS)</td>
-                            <td style={{ padding: '12px', textAlign: 'right', color: '#c53030' }}>{er.otrosGastos > 0 ? `(${formatSoles(er.otrosGastos)})` : "0.00"}</td>
+                            <td style={{ padding: '12px', textAlign: 'right', color: '#c53030' }}>{formatSoles(er.otrosGastos)}</td>
                         </tr>
                         <tr style={{ borderBottom: '1px solid #edf2f7' }}>
                             <td style={{ padding: '12px' }}>OTROS INGRESOS (+ DONACIONES)</td>

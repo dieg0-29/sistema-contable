@@ -23,3 +23,9 @@ export async function obtenerEstadoResultados() {
     if (!response.ok) throw new Error('Error al obtener estado de resultados')
     return await response.json()
 }
+
+export async function obtenerBalanceComprobacion() {
+    const response = await fetch(`${API_URL}/reportes/balance-comprobacion`)
+    if (!response.ok) throw new Error('Error al obtener balance de comprobación')
+    return await response.json()
+}

@@ -480,3 +480,143 @@ input[type="number"].no-spinner {
 .mayor-final-balance span:first-child {
     font-size: 1rem;
 }
+
+/* =========================
+    BALANCE DE COMPROBACIÓN
+========================= */
+
+.balance-title {
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.balance-table-container {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+}
+
+.balance-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.balance-table thead {
+    background-color: #427AB5;
+    color: white;
+}
+
+.balance-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.balance-table tbody tr {
+    border-bottom: 1px solid #e2e8f0;
+    transition: background-color 0.2s;
+}
+
+.balance-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.balance-cell {
+    padding: 12px 15px;
+}
+
+.balance-col-codigo {
+    width: 12%;
+    font-weight: 700;
+    color: #1a202c;
+}
+
+.balance-col-descripcion {
+    width: 50%;
+    color: #334155;
+}
+
+.balance-col-debe,
+.balance-col-haber {
+    width: 19%;
+    text-align: right;
+}
+
+.balance-number {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: #2c344c;
+}
+
+.balance-totals-row {
+    background-color: #f0f4f8;
+    font-weight: 800;
+    border-top: 2px solid #427AB5;
+    border-bottom: 3px solid #427AB5;
+}
+
+.balance-totals-label {
+    text-align: right;
+    padding: 15px;
+    color: #1a202c;
+}
+
+.balance-total {
+    background-color: #dbeafe;
+    color: #1e3a8a;
+}
+
+.balance-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: #f8fafc;
+    border-radius: 12px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+}
+
+.summary-item.balanced {
+    border-color: #10b981;
+    background-color: #ecfdf5;
+}
+
+.summary-item.unbalanced {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.summary-label {
+    font-weight: 700;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+.summary-value {
+    font-weight: 800;
+    font-size: 1.3rem;
+    font-family: 'Courier New', monospace;
+    color: #1a202c;
+}
+
+.summary-item.balanced .summary-value {
+    color: #059669;
+}
+
+.summary-item.unbalanced .summary-value {
+    color: #dc2626;
+}
