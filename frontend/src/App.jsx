@@ -5,18 +5,24 @@ import TransaccionForm from './components/TransaccionForm'
 import DiarioTable from './components/DiarioTable'
 import MayorTable from './components/MayorTable'
 import EstadosFinancieros from './components/EstadosFinancieros'
-import { obtenerCuentas } from './services/cuentasService'
+import { obtenerCuentas, obtenerCuentasMovimiento } from './services/cuentasService'
 import {
   obtenerBalanceGeneral,
   obtenerEstadoResultados,
   obtenerLibroDiario,
   obtenerLibroMayor
 } from './services/reportesService'
+import {
+  editarTransaccion,
+  eliminarTodasTransacciones,
+  eliminarTransaccion
+} from './services/transaccionesService'
 
 function App() {
   const [vista, setVista] = useState('cuentas')
 
   const [cuentas, setCuentas] = useState([])
+  const [cuentasMovimiento, setCuentasMovimiento] = useState([])
   const [diario, setDiario] = useState([])
   const [mayor, setMayor] = useState([])
   const [balance, setBalance] = useState([])
@@ -24,6 +30,8 @@ function App() {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [deletingId, setDeletingId] = useState(null)
+  const [deletingAll, setDeletingAll] = useState(false)
 
   useEffect(() => {
     cargarVista(vista)
@@ -40,8 +48,12 @@ function App() {
       }
 
       if (vistaActual === 'diario') {
-        const data = await obtenerLibroDiario()
+        const [data, dataCuentasMovimiento] = await Promise.all([
+          obtenerLibroDiario(),
+          obtenerCuentasMovimiento()
+        ])
         setDiario(data)
+        setCuentasMovimiento(dataCuentasMovimiento)
       }
 
       if (vistaActual === 'mayor') {
@@ -87,6 +99,55 @@ function App() {
     }
   }
 
+  async function manejarEliminarTransaccion(id_tsc) {
+    try {
+      setDeletingId(id_tsc)
+      setError('')
+      await eliminarTransaccion(id_tsc)
+      await recargarReportes()
+      if (vista === 'diario') {
+        const data = await obtenerLibroDiario()
+        setDiario(data)
+      }
+    } catch (err) {
+      setError(err.message || 'No se pudo eliminar la transacción')
+    } finally {
+      setDeletingId(null)
+    }
+  }
+
+  async function manejarEliminarTodo() {
+    try {
+      setDeletingAll(true)
+      setError('')
+      await eliminarTodasTransacciones()
+      await recargarReportes()
+      if (vista === 'diario') {
+        const data = await obtenerLibroDiario()
+        setDiario(data)
+      }
+    } catch (err) {
+      setError(err.message || 'No se pudieron eliminar las transacciones')
+    } finally {
+      setDeletingAll(false)
+    }
+  }
+
+  async function manejarEditarTransaccion(id_tsc, payload) {
+    try {
+      setError('')
+      await editarTransaccion(id_tsc, payload)
+      await recargarReportes()
+      if (vista === 'diario') {
+        const data = await obtenerLibroDiario()
+        setDiario(data)
+      }
+    } catch (err) {
+      setError(err.message || 'No se pudo editar la transacción')
+      throw err
+    }
+  }
+
   return (
     <div className="app-container">
       <h1 className="main-title">Sistema Contable</h1>
@@ -102,7 +163,17 @@ function App() {
       )}
 
       {vista === 'diario' && (
-        <DiarioTable data={diario} loading={loading} error={error} />
+        <DiarioTable
+          data={diario}
+          cuentas={cuentasMovimiento}
+          loading={loading}
+          error={error}
+          deletingId={deletingId}
+          deletingAll={deletingAll}
+          onEliminarTransaccion={manejarEliminarTransaccion}
+          onEliminarTodo={manejarEliminarTodo}
+          onEditarTransaccion={manejarEditarTransaccion}
+        />
       )}
 
       {vista === 'mayor' && (

@@ -203,6 +203,81 @@
     font-size: 0.92rem;
 }
 
+.diario-action-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.diario-edit-box {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.diario-edit-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 12px;
+}
+
+.diario-edit-grid label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.diario-edit-grid input {
+    width: 100%;
+}
+
+.diario-edit-table input,
+.diario-edit-table select {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .diario-header {
+        grid-template-columns: 45px 110px 1fr 90px 90px;
+        gap: 8px;
+        padding: 0 8px 10px;
+    }
+
+    .diario-card {
+        grid-template-columns: 45px 1fr;
+        gap: 10px;
+        padding: 14px;
+    }
+
+    .diario-linea {
+        grid-template-columns: 110px 1fr 90px 90px;
+        gap: 8px;
+        font-size: 0.9rem;
+    }
+
+    .diario-linea-secundaria .diario-cuenta {
+        padding-left: 16px;
+    }
+
+    .diario-glosa {
+        padding-left: 118px;
+    }
+
+    .diario-edit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .diario-edit-table {
+        font-size: 0.86rem;
+    }
+}
+
 /* =========================
     INPUT NUMBER
 ========================= */
