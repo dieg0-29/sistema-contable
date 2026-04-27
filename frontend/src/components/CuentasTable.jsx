@@ -4,47 +4,42 @@ export default function CuentasTable({ cuentas, loading, error }) {
   if (!cuentas.length) return <p>No hay cuentas registradas.</p>
 
   return (
-    <div className="section-block table-wrapper" style={{ maxWidth: '900px', margin: '0 auto' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Catálogo de cuentas</h2>
+    <div className="section-block table-wrapper cuentas-wrapper">
+      <h2 className="cuentas-title">Catálogo de cuentas</h2>
 
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <table className="cuentas-table">
         <thead>
-          <tr style={{ backgroundColor: '#f4f4f4' }}>
-            <th className="table-header" style={{ textAlign: 'center', padding: '12px' }}>Código</th>
-            <th className="table-header" style={{ textAlign: 'left', padding: '12px' }}>Descripción</th>
-            <th className="table-header" style={{ textAlign: 'center', padding: '12px' }}>Clasificación</th>
-            <th className="table-header" style={{ textAlign: 'center', padding: '12px' }}>Naturaleza</th>
+          <tr className="cuentas-header-row">
+            <th className="table-header cuentas-th-center">Código</th>
+            <th className="table-header cuentas-th-left">Descripción</th>
+            <th className="table-header cuentas-th-center">Clasificación</th>
+            <th className="table-header cuentas-th-center">Naturaleza</th>
           </tr>
         </thead>
+
         <tbody>
           {cuentas.map((cuenta) => (
-            <tr 
-              key={cuenta.id_cuenta} 
-              style={{ 
-                borderBottom: '1px solid #eee',
-                // Resaltamos en negrita las cuentas padre (las que no aceptan movimiento)
-                fontWeight: cuenta.acepta_movimiento ? 'normal' : 'bold' 
-              }}
+            <tr
+              key={cuenta.id_cuenta}
+              className={`cuentas-row ${
+                cuenta.acepta_movimiento ? '' : 'cuentas-row-parent'
+              }`}
             >
-              {/* Código centrado */}
-              <td style={{ textAlign: 'center', padding: '10px' }}>
+              <td className="cuentas-cell-center">
                 {cuenta.cod_cuenta}
               </td>
-              
-              {/* Descripción con sangría visual según el nivel, pero sin mostrar el número del nivel */}
-              <td style={{ 
-                textAlign: 'left', 
-                padding: '10px', 
-                paddingLeft: `${(cuenta.nivel_cuenta - 1) * 25}px` 
-              }}>
+
+              <td
+                className="cuentas-cell-description"
+              >
                 {cuenta.descp_cuenta}
               </td>
-              
-              {/* Clasificación y Naturaleza centradas */}
-              <td style={{ textAlign: 'center', padding: '10px', textTransform: 'capitalize' }}>
+
+              <td className="cuentas-cell-center cuentas-capitalize">
                 {cuenta.clasificacion_cuenta}
               </td>
-              <td style={{ textAlign: 'center', padding: '10px', textTransform: 'capitalize' }}>
+
+              <td className="cuentas-cell-center cuentas-capitalize">
                 {cuenta.naturaleza_cuenta}
               </td>
             </tr>

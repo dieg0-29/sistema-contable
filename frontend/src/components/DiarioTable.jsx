@@ -24,15 +24,26 @@ export default function DiarioTable({ data, loading, error }) {
     return d.toLocaleDateString('es-PE')
   }
 
+  function formatearMonto(monto) {
+    return Number(monto).toLocaleString('es-PE', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    })
+  }
+
   return (
-    <div className="section-block">
-      <h2>Registros</h2>
+    <div className="diario-section">
+      <div className="diario-title-block">
+        <h2>Libro diario</h2>
+        <p>Registro ordenado de operaciones contables</p>
+      </div>
 
       <div className="diario-header">
         <div></div>
-        <div></div>
-        <div className="diario-col-title">DEBE</div>
-        <div className="diario-col-title">HABER</div>
+        <div>Fecha</div>
+        <div>Cuenta</div>
+        <div>Debe</div>
+        <div>Haber</div>
       </div>
 
       <div className="diario-list">
@@ -44,7 +55,9 @@ export default function DiarioTable({ data, loading, error }) {
               {transaccion.lineas.map((linea, idx) => (
                 <div
                   key={`${linea.id_tsc}-${linea.id_detalle}-${linea.orden}`}
-                  className={`diario-linea ${idx > 0 ? 'diario-linea-secundaria' : 'diario-linea-principal'}`}
+                  className={`diario-linea ${
+                    idx > 0 ? 'diario-linea-secundaria' : 'diario-linea-principal'
+                  }`}
                 >
                   <div className="diario-fecha">
                     {idx === 0 ? formatearFecha(transaccion.fecha_tsc) : ''}
@@ -55,11 +68,11 @@ export default function DiarioTable({ data, loading, error }) {
                   </div>
 
                   <div className="diario-monto">
-                    {Number(linea.debe) > 0 ? Number(linea.debe).toLocaleString('es-PE') : ''}
+                    {Number(linea.debe) > 0 ? formatearMonto(linea.debe) : ''}
                   </div>
 
                   <div className="diario-monto">
-                    {Number(linea.haber) > 0 ? Number(linea.haber).toLocaleString('es-PE') : ''}
+                    {Number(linea.haber) > 0 ? formatearMonto(linea.haber) : ''}
                   </div>
                 </div>
               ))}
