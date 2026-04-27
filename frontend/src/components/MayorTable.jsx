@@ -83,7 +83,7 @@ export default function MayorTable({ data, loading, error }) {
                     return (
                         <div key={cuenta.codigo} className="mayor-card">
                             <div className="mayor-card-title">
-                                {cuenta.codigo} {cuenta.nombre}
+                                <cod className="mayor-cod">{cuenta.codigo}</cod> {cuenta.nombre}
                             </div>
 
                             <div className="mayor-card-header">

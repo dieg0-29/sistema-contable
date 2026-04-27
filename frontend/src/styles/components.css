@@ -22,7 +22,19 @@
     padding: 10px 14px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    background: white;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+}
+
+.secondary-button:hover {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    color: #fff;
+    background-color: #25304a;
+    transform: translateY(-1);
+    transition: transform linear 0.1s;
 }
 
 .danger-button {
@@ -31,6 +43,18 @@
     border: 1px solid #ef4444;
     background: white;
     color: #ef4444;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+}
+
+.danger-button:hover {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #fff;
+    background-color: #ef4444;
+    color: #fff;
+    transform: translateY(-1);
+    transition: transform linear 0.1s;
 }
 
 .success-text {
@@ -64,7 +88,7 @@
     background: white;
     padding: 16px;
     border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .table-header {
@@ -479,4 +503,11 @@ input[type="number"].no-spinner {
 
 .mayor-final-balance span:first-child {
     font-size: 1rem;
+}
+
+.mayor-card:hover .mayor-cod{
+    color: #0d345b;
+    text-shadow: 0 1px 2px rgba(15, 23, 42, 0.25);
+    transition: color linear 0.2s;
+    transition: text-shadow linear 0.2s;
 }
