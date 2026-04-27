@@ -5,24 +5,29 @@
 }
 
 .navbar {
+    width: 100%;
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    gap: 5px;
+    align-items: stretch;
     flex-wrap: wrap;
     margin-bottom: 24px;
 }
 
 .navbar-button {
+    flex-grow: 1; 
+    flex-shrink: 1;
     padding: 10px 14px;
+    border: 1px solid #406AAF;
     border-radius: 8px;
-    border: 1px solid #000;
-    background: rgb(134, 165, 225);
-    color: #000
+    background: #427AB5;
+    color: #fff
 }
 
 .navbar-button.active {
-    background: rgb(40, 49, 66);
-    color: rgb(155, 178, 225);
-    border-color: #111827;
+    background: #2C344C;
+    color: #B4C9EA;
+    border-color: #2C344C;
 }
 
 .grid-3 {

@@ -39,7 +39,7 @@ export default function DiarioTable({ data, loading, error }) {
       </div>
 
       <div className="diario-header">
-        <div></div>
+        <div>N°</div>
         <div>Fecha</div>
         <div>Cuenta</div>
         <div>Debe</div>

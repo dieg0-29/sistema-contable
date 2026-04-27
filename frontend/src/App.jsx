@@ -89,7 +89,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>Sistema Contable</h1>
+      <h1 className="main-title">Sistema Contable</h1>
 
       <Navbar vista={vista} setVista={setVista} />
 
