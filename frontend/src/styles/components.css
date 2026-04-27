@@ -60,17 +60,48 @@
     background-color: rgb(134, 165, 225);
 }
 
-.diario-header {
-    display: grid;
-    grid-template-columns: 50px 1fr 140px 140px;
-    gap: 16px;
-    align-items: center;
-    font-weight: 700;
-    margin-bottom: 8px;
+/* =========================
+   LIBRO DIARIO
+========================= */
+
+.diario-section {
+    background: #f4f7fb;
+    padding: 24px;
+    border-radius: 18px;
 }
 
-.diario-col-title {
-    text-align: center;
+.diario-title-block {
+    margin-bottom: 22px;
+}
+
+.diario-title-block h2 {
+    margin: 0;
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.diario-title-block p {
+    margin: 5px 0 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.diario-header {
+    display: grid;
+    grid-template-columns: 60px 150px 1fr 140px 140px;
+    gap: 16px;
+    padding: 0 26px 10px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #334155;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.diario-header div:nth-child(4),
+.diario-header div:nth-child(5) {
+    text-align: right;
 }
 
 .diario-list {
@@ -80,17 +111,20 @@
 
 .diario-card {
     display: grid;
-    grid-template-columns: 50px 1fr;
+    grid-template-columns: 60px 1fr;
     gap: 16px;
-    background: #fff;
-    padding: 16px 20px;
-    border-radius: 8px;
+    background: #ffffff;
+    padding: 22px 26px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
 }
 
 .diario-index {
-    font-size: 2rem;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #0f172a;
     line-height: 1;
-    align-self: start;
 }
 
 .diario-content {
@@ -100,11 +134,19 @@
 
 .diario-linea {
     display: grid;
-    grid-template-columns: 140px 1fr 140px 140px;
+    grid-template-columns: 150px 1fr 140px 140px;
     gap: 16px;
     align-items: start;
-    color: #0066c0;
+    font-weight: 800;
+}
+
+.diario-fecha {
+    color: #0f172a;
     font-weight: 700;
+}
+
+.diario-cuenta {
+    color: #005eb8;
 }
 
 .diario-linea-principal .diario-cuenta {
@@ -112,58 +154,199 @@
 }
 
 .diario-linea-secundaria .diario-cuenta {
-    padding-left: 40px;
-}
-
-.diario-fecha {
-    color: #111827;
-    font-weight: 600;
-}
-
-.diario-cuenta {
-    text-align: left;
+    padding-left: 50px;
 }
 
 .diario-monto {
     text-align: right;
+    color: #0f172a;
+    font-weight: 800;
     font-variant-numeric: tabular-nums;
 }
 
 .diario-glosa {
-    padding-left: 155px;
-    color: #7a7a7a;
+    padding-left: 150px;
+    margin-top: 2px;
+    color: #64748b;
     font-style: italic;
+    font-size: 0.92rem;
 }
+
+/* =========================
+   INPUT NUMBER
+========================= */
 
 input[type="number"].no-spinner::-webkit-outer-spin-button,
 input[type="number"].no-spinner::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type="number"].no-spinner {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
-/* Estilos para secciones de estados financieros */
-.section-header {
-    background-color: rgb(134, 165, 225);
-    font-weight: bold;
+/* =========================
+   LIBRO MAYOR
+========================= */
+
+.mayor-title {
+    margin-bottom: 25px;
+    font-size: 1.8rem;
 }
 
-.subtotal-row {
-    background-color: #f3f4f6;
+.mayor-filter-box {
+    margin-bottom: 35px;
+}
+
+.mayor-filter-label {
+    font-size: 1.1rem;
+}
+
+.mayor-filter-select {
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.mayor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    gap: 35px;
+}
+
+.mayor-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+}
+
+.mayor-card-title {
+    text-align: center;
+    border-bottom: 3px solid #1a202c;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: #1a202c;
+}
+
+.mayor-card-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #4a5568;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.mayor-card-header span {
+    flex: 1;
+    text-align: center;
+}
+
+.mayor-columns {
+    display: flex;
+}
+
+.mayor-column {
+    flex: 1;
+}
+
+.mayor-column-debe {
+    border-right: 3px solid #1a202c;
+    padding-right: 20px;
+}
+
+.mayor-column-haber {
+    padding-left: 20px;
+}
+
+.mayor-movement-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.mayor-movement-date {
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+.mayor-movement-amount {
     font-weight: 600;
-    border-top: 1px solid #d1d5db;
 }
 
-.total-row {
-    background-color: rgb(134, 165, 225);
+.mayor-final-balance {
+    margin-top: 30px;
+    border-top: 2px solid #1a202c;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.mayor-final-balance span:first-child {
+    font-size: 1rem;
+}
+
+/* =========================
+   CATÁLOGO DE CUENTAS
+========================= */
+
+.cuentas-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.cuentas-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cuentas-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cuentas-header-row {
+    background-color: #f4f4f4;
+}
+
+.cuentas-th-center {
+    text-align: center;
+    padding: 12px;
+}
+
+.cuentas-th-left {
+    text-align: left;
+    padding: 12px;
+}
+
+.cuentas-row {
+    border-bottom: 1px solid #eee;
+    font-weight: normal;
+}
+
+.cuentas-row-parent {
     font-weight: bold;
-    border-top: 2px solid #111827;
 }
 
-.amount-cell {
-    text-align: right;
-    font-variant-numeric: tabular-nums;
+.cuentas-cell-center {
+    text-align: center;
+    padding: 10px;
+}
+
+.cuentas-cell-description {
+    text-align: left;
+    padding: 10px 10px 10px 10px;
+}
+
+.cuentas-capitalize {
+    text-transform: capitalize;
 }
