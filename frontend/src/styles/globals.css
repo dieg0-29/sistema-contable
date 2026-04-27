@@ -5,8 +5,8 @@
 body {
     margin: 0;
     font-family: "Roboto";
-    background: #B4C9EA;
-    color: #111827;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 45%, #e0f2fe 100%);
+    color: #0f172a;
 }
 
 @font-face {
@@ -50,16 +50,23 @@ h1,h2,h3,p {
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     background: white;
 }
 
 th,
 td {
-    border: 1px solid #d1d5db;
-    padding: 10px;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 14px;
     text-align: left;
-    vertical-align: top;
+    vertical-align: middle;
+}
+
+th {
+    background: #bfdbfe;
+    color: #0f172a;
+    font-weight: 800;
 }
 
 input,
@@ -71,9 +78,21 @@ button {
 input,
 select {
     width: 100%;
-    padding: 8px;
+    min-height: 44px;
+    padding: 10px 14px;
     border: 1px solid #cbd5e1;
-    border-radius: 6px;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: #0f172a;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
 }
 
 button {

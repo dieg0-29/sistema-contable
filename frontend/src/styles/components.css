@@ -65,11 +65,70 @@
     padding: 16px;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1.5px solid #334155
 }
 
 .table-header {
     text-align: center;
-    background-color: rgb(134, 165, 225);
+    background-color: #427AB5;
+    color: #fff;
+}
+
+/* =========================
+    CATÁLOGO DE CUENTAS
+========================= */
+
+.cuentas-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.cuentas-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cuentas-table {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cuentas-header-row {
+    background-color: #f4f4f4;
+}
+
+.cuentas-th-center {
+    text-align: center;
+    padding: 12px;
+}
+
+.cuentas-th-left {
+    text-align: left;
+    padding: 12px;
+}
+
+.cuentas-row {
+    border-bottom: 1px solid #eee;
+    font-weight: normal;
+}
+
+.cuentas-row-parent {
+    font-weight: bold;
+}
+
+.cuentas-cell-center {
+    text-align: center;
+    padding: 10px;
+}
+
+.cuentas-cell-description {
+    text-align: left;
+    padding: 10px 10px 10px 10px;
+}
+
+.cuentas-capitalize {
+    text-transform: capitalize;
 }
 
 /* =========================
@@ -143,6 +202,8 @@
     border: 1px solid #2C344C;
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.5);
     transition: box-shadow linear 0.4s;
+    transform: translateY(-2px);
+    transition: transform linear 0.2s;
 }
 
 .diario-card:hover .diario-monto {
@@ -218,7 +279,7 @@ input[type="number"].no-spinner {
 }
 
 /* =========================
-   LIBRO MAYOR
+    LIBRO MAYOR
 ========================= */
 
 .mayor-title {
@@ -250,7 +311,7 @@ input[type="number"].no-spinner {
     background-color: #ffffff;
     padding: 30px;
     border-radius: 15px;
-    border: 1px solid #e2e8f0;
+    outline: 1px solid #888;
 }
 
 .mayor-card:hover {
@@ -258,9 +319,11 @@ input[type="number"].no-spinner {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0px 0px 20px 7px rgba(0, 0, 0, 0.2);
-    border: 2px solid #406AAF;
+    outline: 2px solid #406AAF;
+    transform: translateY(-2px);
     transition: box-shadow linear 0.4s;
-    transition: border linear 0.2s;
+    transition: outline linear 0.2s;
+    transition: transform linear 0.2s;
 }
 
 .mayor-card:hover .mayor-card-title,
@@ -341,60 +404,4 @@ input[type="number"].no-spinner {
 
 .mayor-final-balance span:first-child {
     font-size: 1rem;
-}
-
-/* =========================
-   CATÁLOGO DE CUENTAS
-========================= */
-
-.cuentas-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.cuentas-title {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.cuentas-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.cuentas-header-row {
-    background-color: #f4f4f4;
-}
-
-.cuentas-th-center {
-    text-align: center;
-    padding: 12px;
-}
-
-.cuentas-th-left {
-    text-align: left;
-    padding: 12px;
-}
-
-.cuentas-row {
-    border-bottom: 1px solid #eee;
-    font-weight: normal;
-}
-
-.cuentas-row-parent {
-    font-weight: bold;
-}
-
-.cuentas-cell-center {
-    text-align: center;
-    padding: 10px;
-}
-
-.cuentas-cell-description {
-    text-align: left;
-    padding: 10px 10px 10px 10px;
-}
-
-.cuentas-capitalize {
-    text-transform: capitalize;
 }

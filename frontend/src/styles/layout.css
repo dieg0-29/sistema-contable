@@ -1,50 +1,80 @@
 .app-container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 24px;
+    padding: 28px;
 }
 
 .navbar {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 5px;
-    align-items: stretch;
+    gap: 8px;
+    align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 }
 
 .navbar-button {
-    flex-grow: 1; 
-    flex-shrink: 1;
-    padding: 10px 14px;
-    border: 1px solid #406AAF;
-    border-radius: 8px;
-    background: #427AB5;
-    color: #fff
+    flex: 1;
+    min-width: 180px;
+    min-height: 52px;
+    padding: 12px 18px;
+    border: 1px solid rgba(64, 106, 175, 0.35);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3f7fbc, #326da8);
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 8px 18px rgba(30, 58, 138, 0.16);
+    transition: 0.2s ease;
+}
+
+.navbar-button:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, #4b8ed0, #3678ba);
 }
 
 .navbar-button.active {
-    background: #2C344C;
-    color: #B4C9EA;
-    border-color: #2C344C;
+    background: linear-gradient(135deg, #111827, #25304a);
+    color: #dbeafe;
+    border-color: #111827;
+}
+
+.navbar-button .icon {
+    display: flex;
+    font-size: 17px;
 }
 
 .grid-3 {
     display: grid;
-    gap: 12px;
-    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    grid-template-columns: 240px 1fr;
+    max-width: 820px;
 }
 
 .section-block {
     display: grid;
-    gap: 16px;
+    gap: 24px;
+    max-width: 1180px;
+    margin: 0 auto 32px;
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(190, 205, 225, 0.9);
+    border-radius: 22px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
 }
 
 .actions-row {
     display: flex;
-    gap: 16px;
+    gap: 18px;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 12px;
+    margin-top: 18px;
+    padding: 18px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
 }

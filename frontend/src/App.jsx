@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { FaHome, FaPlus, FaBook, FaChartBar } from "react-icons/fa";
 import Navbar from './components/Navbar'
 import CuentasTable from './components/CuentasTable'
 import TransaccionForm from './components/TransaccionForm'
