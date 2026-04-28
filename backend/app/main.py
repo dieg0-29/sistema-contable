@@ -12,11 +12,11 @@ app = FastAPI(title="Sistema Contable API", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://sistema-contable-1-cbkf.onrender.com",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-        "https://sistema-contable-1-cbkf.onrender.com"
     ],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
