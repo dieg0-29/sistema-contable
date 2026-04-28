@@ -23,22 +23,17 @@ export default function CuentasTable({ cuentas, loading, error }) {
               key={cuenta.id_cuenta}
               className={`cuentas-row ${
                 cuenta.acepta_movimiento ? '' : 'cuentas-row-parent'
-              }`}
+              }`} 
             >
               <td className="cuentas-cell-center">
                 {cuenta.cod_cuenta}
               </td>
-
-              <td
-                className="cuentas-cell-description"
-              >
+              <td className="cuentas-cell-description">
                 {cuenta.descp_cuenta}
               </td>
-
               <td className="cuentas-cell-center cuentas-capitalize">
                 {cuenta.clasificacion_cuenta}
               </td>
-
               <td className="cuentas-cell-center cuentas-capitalize">
                 {cuenta.naturaleza_cuenta}
               </td>
