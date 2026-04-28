@@ -206,6 +206,7 @@ function construirESF(balance, utilidadDelPeriodo) {
     const esCorriente = (item) => {
         const cod = item.cod_cuenta?.toString() || "";
         if (cod.startsWith('1') && parseInt(cod.substring(0,2)) < 19) return true;
+        if (cod.startsWith('2')) return true;
         if (cod.startsWith('4') && parseInt(cod.substring(0,2)) < 49) return true;
         return false;
     };
