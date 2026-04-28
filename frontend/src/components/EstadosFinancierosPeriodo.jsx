@@ -147,7 +147,8 @@ export default function EstadosFinancierosPeriodo({ balance, resultados, loading
 
             <div className="efp-card-results">
                 <div className="efp-results-header">
-                    <h2>ESTADO DE RESULTADOS PERIODO</h2>
+                    <h2>ESTADO DE RESULTADOS</h2>
+                    <h3>Periodo Actual</h3>
                     <p></p>
                 </div>
 

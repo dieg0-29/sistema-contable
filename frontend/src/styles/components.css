@@ -806,3 +806,38 @@ input[type="number"].no-spinner {
     color: #4a5568;
     text-transform: uppercase;
 }
+
+/* =========================
+    BALANCE DE COMPROBACION
+========================= */
+
+.balance-summary {
+    padding: 10px;
+    outline: 1px solid #00a53d;
+    background-color: #96ffbc;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.balance-number {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.balance-totals-label, .summary-label {
+    font-weight: 800;
+}
+
+.balance-totals-label {
+    text-align: right;
+}
+
+.summary-value {
+    color:#00a53d;
+    font-weight: 800;
+}

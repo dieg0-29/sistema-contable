@@ -192,7 +192,7 @@ export default function TransaccionForm({ onGuardado }) {
             <thead>
               <tr>
                 <th>Cuenta</th>
-                <th>Descripción línea</th>
+                <th>Descripción</th>
                 <th>Debe</th>
                 <th>Haber</th>
                 <th>Acción</th>
