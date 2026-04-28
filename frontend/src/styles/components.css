@@ -1,198 +1,249 @@
-/* =========================
-    TÍTULO
-========================= */
+/* ================================================
+   COMPONENTS — Dark Corporate Theme
+   ================================================ */
+
+/* ─── TITLE ──────────────────────────────────── */
 
 .main-title {
     text-align: center;
+    font-size: 1.5rem;
+    color: var(--text-primary);
 }
 
-/* =========================
-    COMPONENTES PRINCIPALES
-========================= */
+/* ─── BUTTONS ────────────────────────────────── */
 
 .primary-button {
-    padding: 10px 14px;
-    border-radius: 8px;
+    padding: 9px 20px;
+    border-radius: var(--radius-sm);
     border: none;
-    background: #111827;
-    color: rgb(181, 197, 225);
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.83rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 12px rgba(59, 130, 246, 0.35);
+    letter-spacing: 0.01em;
+}
+
+.primary-button:hover:not(:disabled) {
+    background: var(--accent-hover);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5);
+    transform: translateY(-1px);
+}
+
+.primary-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .secondary-button {
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background: #fff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    transition: all 0.25s ease;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-hover);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.83rem;
+    transition: all 0.2s ease;
 }
 
-.secondary-button:hover {
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    color: #fff;
-    background-color: #25304a;
-    transform: translateY(-1);
-    transition: transform linear 0.1s;
+.secondary-button:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.secondary-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
 }
 
 .danger-button {
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid #ef4444;
-    background: white;
-    color: #ef4444;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    transition: all 0.25s ease;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--danger-border);
+    background: var(--danger-bg);
+    color: var(--danger);
+    font-weight: 600;
+    font-size: 0.83rem;
+    transition: all 0.2s ease;
 }
 
-.danger-button:hover {
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid #fff;
-    background-color: #ef4444;
+.danger-button:hover:not(:disabled) {
+    background: var(--danger);
     color: #fff;
-    transform: translateY(-1);
-    transition: transform linear 0.1s;
+    border-color: var(--danger);
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
 }
+
+.danger-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* ─── STATUS & TEXT ──────────────────────────── */
 
 .success-text {
-    color: green;
+    color: var(--success);
+    font-weight: 500;
 }
 
 .error-text {
-    color: red;
+    color: var(--danger);
+    font-weight: 500;
 }
+
+.status-ok {
+    color: var(--success);
+    font-weight: 700;
+}
+
+.status-bad {
+    color: var(--danger);
+    font-weight: 700;
+}
+
+/* ─── GENERIC WRAPPERS ───────────────────────── */
 
 .card-section {
     display: grid;
-    gap: 32px;
+    gap: 28px;
 }
 
 .filter-box {
     margin-bottom: 16px;
 }
 
-.status-ok {
-    color: #15803d;
-    font-weight: bold;
-}
-
-.status-bad {
-    color: #b91c1c;
-    font-weight: bold;
-}
-
 .table-wrapper {
-    background: white;
-    padding: 16px;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
 }
 
 .table-header {
     text-align: center;
-    background-color: #427AB5;
-    color: #fff;
+    background: var(--bg-surface-2);
+    color: var(--text-muted);
 }
 
-/* =========================
-    CATÁLOGO DE CUENTAS
-========================= */
+/* ─── INPUT (no spinner) ─────────────────────── */
+
+input[type="number"].no-spinner::-webkit-outer-spin-button,
+input[type="number"].no-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"].no-spinner {
+    appearance: textfield;
+}
+
+/* ================================================
+   CATÁLOGO DE CUENTAS
+   ================================================ */
 
 .cuentas-wrapper {
-    max-width: 900px;
+    max-width: 920px;
     margin: 0 auto;
-    box-shadow: 0px 0px 31px 7px rgba(0, 0, 0, 0.2);
 }
 
 .cuentas-title {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--text-primary);
 }
 
 .cuentas-table {
     width: 100%;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     overflow: hidden;
 }
 
 .cuentas-header-row {
-    background-color: #f4f4f4;
+    background: var(--bg-surface-2);
 }
 
 .cuentas-th-center {
     text-align: center;
-    padding: 12px;
+    padding: 12px 16px;
 }
 
 .cuentas-th-left {
     text-align: left;
-    padding: 12px;
+    padding: 12px 16px;
 }
 
 .cuentas-row {
-    border-bottom: 1px solid #eee;
-    font-weight: normal;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+    color: var(--text-secondary);
 }
 
 .cuentas-row-parent {
-    font-weight: bold;
+    font-weight: 700;
+    color: var(--text-primary);
+    background: rgba(59, 130, 246, 0.04);
 }
 
 .cuentas-cell-center {
     text-align: center;
-    padding: 10px;
+    padding: 10px 16px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
 }
 
 .cuentas-cell-description {
     text-align: left;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 16px;
 }
 
 .cuentas-capitalize {
     text-transform: capitalize;
 }
 
-/* =========================
-    LIBRO DIARIO
-========================= */
+/* ================================================
+   LIBRO DIARIO
+   ================================================ */
 
 .diario-section {
-    background: #fff;
-    padding: 24px;
-    border-radius: 18px;
-    box-shadow: 0px 0px 31px 7px rgba(0, 0, 0, 0.2);
+    background: var(--bg-surface);
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
 }
 
 .diario-title-block {
-    margin-bottom: 22px;
+    margin-bottom: 24px;
 }
 
 .diario-title-block h2 {
     margin: 0;
-    font-size: 1.65rem;
-    font-weight: 800;
-    color: #0f172a;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 .diario-title-block p {
-    margin: 5px 0 0;
-    color: #64748b;
-    font-size: 0.95rem;
+    margin: 4px 0 0;
+    color: var(--text-muted);
+    font-size: 0.82rem;
 }
 
 .diario-header {
     display: grid;
-    grid-template-columns: 60px 150px 1fr 140px 140px;
+    grid-template-columns: 50px 140px 1fr 130px 130px;
     gap: 16px;
-    padding: 0 26px 10px;
-    font-size: 0.78rem;
-    font-weight: 800;
-    color: #334155;
+    padding: 0 24px 10px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
 }
 
 .diario-header div:nth-child(4),
@@ -202,66 +253,62 @@
 
 .diario-list {
     display: grid;
-    gap: 16px;
+    gap: 12px;
 }
 
 .diario-card {
     display: grid;
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 50px 1fr;
     gap: 16px;
-    background: #B4C9EA;
-    padding: 22px 26px;
-    border-radius: 16px;
-    border: 1px solid #2C344C;
-    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+    background: rgba(26, 39, 68, 0.6);
+    padding: 20px 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
 }
 
 .diario-card:hover {
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    gap: 16px;
-    background: #B4C9EA;
-    padding: 22px 26px;
-    border-radius: 16px;
-    border: 1px solid #2C344C;
-    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.5);
-    transition: box-shadow linear 0.4s;
-    transform: translateY(-2px);
-    transition: transform linear 0.2s;
+    border-color: var(--border-accent);
+    background: rgba(59, 130, 246, 0.06);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+    transform: translateY(-1px);
 }
 
 .diario-card:hover .diario-monto {
-    color:#406AAF;
-    text-shadow: #0f172a;
+    color: var(--accent);
 }
 
 .diario-index {
-    font-size: 1.9rem;
-    font-weight: 800;
-    color: #0f172a;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--accent);
     line-height: 1;
+    font-family: var(--font-mono);
+    opacity: 0.7;
 }
 
 .diario-content {
     display: grid;
-    gap: 12px;
+    gap: 10px;
 }
 
 .diario-linea {
     display: grid;
-    grid-template-columns: 150px 1fr 140px 140px;
+    grid-template-columns: 140px 1fr 130px 130px;
     gap: 16px;
     align-items: start;
-    font-weight: 800;
+    font-weight: 500;
 }
 
 .diario-fecha {
-    color: #0f172a;
-    font-weight: 700;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.85rem;
 }
 
 .diario-cuenta {
-    color: #2C344C;
+    color: var(--text-primary);
+    font-size: 0.87rem;
 }
 
 .diario-linea-principal .diario-cuenta {
@@ -269,53 +316,53 @@
 }
 
 .diario-linea-secundaria .diario-cuenta {
-    padding-left: 50px;
+    padding-left: 48px;
+    color: var(--text-secondary);
 }
 
 .diario-monto {
     text-align: right;
-    color: #0f172a;
-    font-weight: 800;
-    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
 }
 
 .diario-glosa {
-    padding-left: 165px;
-    margin-top: 2px;
-    color: #445686;
-    font-weight: 600;
+    padding-left: 156px;
+    margin-top: 4px;
+    color: var(--text-muted);
     font-style: italic;
-    font-size: 0.92rem;
+    font-size: 0.8rem;
 }
 
 .diario-action-row {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    margin-top: 6px;
+    margin-top: 8px;
 }
 
 .diario-edit-box {
     display: grid;
-    gap: 12px;
-    margin-top: 12px;
-    background: #fff;
-    border: 1px solid #cbd5e1;
-    border-radius: 12px;
-    padding: 14px;
+    gap: 14px;
+    margin-top: 14px;
+    background: rgba(11, 17, 32, 0.6);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-md);
+    padding: 16px;
 }
 
 .diario-edit-grid {
     display: grid;
     grid-template-columns: 200px 1fr;
-    gap: 12px;
+    gap: 14px;
 }
 
 .diario-edit-grid label {
     display: block;
     margin-bottom: 4px;
-    font-weight: 700;
-    color: #334155;
 }
 
 .diario-edit-grid input {
@@ -329,29 +376,29 @@
 
 @media (max-width: 900px) {
     .diario-header {
-        grid-template-columns: 45px 110px 1fr 90px 90px;
+        grid-template-columns: 36px 100px 1fr 80px 80px;
         gap: 8px;
         padding: 0 8px 10px;
     }
 
     .diario-card {
-        grid-template-columns: 45px 1fr;
-        gap: 10px;
-        padding: 14px;
+        grid-template-columns: 36px 1fr;
+        gap: 8px;
+        padding: 14px 12px;
     }
 
     .diario-linea {
-        grid-template-columns: 110px 1fr 90px 90px;
+        grid-template-columns: 100px 1fr 80px 80px;
         gap: 8px;
-        font-size: 0.9rem;
+        font-size: 0.82rem;
     }
 
     .diario-linea-secundaria .diario-cuenta {
-        padding-left: 16px;
+        padding-left: 12px;
     }
 
     .diario-glosa {
-        padding-left: 118px;
+        padding-left: 108px;
     }
 
     .diario-edit-grid {
@@ -359,97 +406,102 @@
     }
 
     .diario-edit-table {
-        font-size: 0.86rem;
+        font-size: 0.82rem;
     }
 }
 
-/* =========================
-    INPUT NUMBER
-========================= */
-
-input[type="number"].no-spinner::-webkit-outer-spin-button,
-input[type="number"].no-spinner::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type="number"].no-spinner {
-    appearance: textfield;
-}
-
-/* =========================
-    LIBRO MAYOR
-========================= */
+/* ================================================
+   LIBRO MAYOR
+   ================================================ */
 
 .mayor-title {
-    margin-bottom: 25px;
-    font-size: 1.8rem;
+    margin-bottom: 22px;
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 .mayor-filter-box {
-    margin-bottom: 35px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .mayor-filter-label {
-    font-size: 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
 }
 
 .mayor-filter-select {
-    font-size: 1.1rem;
-    padding: 5px 10px;
-    border-radius: 8px;
+    font-size: 0.85rem;
+    max-width: 320px;
 }
 
 .mayor-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-    gap: 35px;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 20px;
 }
 
 .mayor-card {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 15px;
-    outline: 1px solid #888;
+    background: var(--bg-surface);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
 }
 
 .mayor-card:hover {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 20px 7px rgba(0, 0, 0, 0.2);
-    outline: 2px solid #406AAF;
+    border-left-color: var(--accent-gold);
+    box-shadow: var(--shadow-md);
     transform: translateY(-2px);
-    transition: box-shadow linear 0.4s;
-    transition: outline linear 0.2s;
-    transition: transform linear 0.2s;
 }
 
 .mayor-card:hover .mayor-card-title,
 .mayor-card:hover .mayor-card-header,
 .mayor-card:hover .mayor-movement-row,
 .mayor-card:hover .mayor-final-balance {
-    color: #406AAF;
-    transition: color linear 0.2s;
+    color: var(--accent);
+    transition: color 0.2s ease;
 }
 
 .mayor-card-title {
     text-align: center;
-    border-bottom: 3px solid #1a202c;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-    font-weight: 800;
-    font-size: 1.3rem;
-    color: #1a202c;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    transition: color 0.2s ease;
+}
+
+.mayor-cod {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-right: 4px;
+}
+
+.mayor-card:hover .mayor-cod {
+    color: var(--accent);
+    transition: color 0.2s ease;
 }
 
 .mayor-card-header {
     display: flex;
     justify-content: space-between;
-    font-weight: 800;
-    font-size: 1rem;
-    color: #4a5568;
+    font-weight: 700;
+    font-size: 0.7rem;
+    color: var(--text-muted);
     text-transform: uppercase;
+    letter-spacing: 0.08em;
     margin-bottom: 12px;
 }
 
@@ -467,342 +519,534 @@ input[type="number"].no-spinner {
 }
 
 .mayor-column-debe {
-    border-right: 3px solid #1a202c;
-    padding-right: 20px;
+    border-right: 1px solid var(--border);
+    padding-right: 16px;
 }
 
 .mayor-column-haber {
-    padding-left: 20px;
+    padding-left: 16px;
 }
 
 .mayor-movement-row {
     display: flex;
     justify-content: space-between;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
 }
 
 .mayor-movement-date {
-    color: #718096;
-    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
 }
 
 .mayor-movement-amount {
     font-weight: 600;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
 }
 
 .mayor-final-balance {
-    margin-top: 30px;
-    border-top: 2px solid #1a202c;
-    padding-top: 12px;
+    margin-top: 16px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
     display: flex;
     justify-content: space-between;
-    font-weight: 800;
-    font-size: 1.2rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--accent-gold);
 }
 
 .mayor-final-balance span:first-child {
-    font-size: 1rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 600;
 }
 
-.mayor-card:hover .mayor-cod{
-    color: #0d345b;
-    text-shadow: 0 1px 2px rgba(15, 23, 42, 0.25);
-    transition: color linear 0.2s;
-    transition: text-shadow linear 0.2s;
+/* ================================================
+   BALANCE DE COMPROBACIÓN
+   ================================================ */
+
+.balance-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
-/* =========================
-    ESTADOS FINANCIEROS
-========================= */
+.balance-table-container {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+}
+
+.balance-table {
+    width: 100%;
+}
+
+.balance-row {
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    transition: background 0.15s ease;
+}
+
+.balance-row:hover {
+    background: rgba(59, 130, 246, 0.05);
+    color: var(--text-primary);
+}
+
+.balance-cell {
+    padding: 10px 16px;
+    font-size: 0.87rem;
+}
+
+.balance-number {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 0.84rem;
+}
+
+.balance-total {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.balance-totals-row {
+    background: var(--bg-surface-2);
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.balance-totals-label {
+    padding: 12px 16px;
+    text-align: right;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+}
+
+.balance-col-codigo {
+    width: 90px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.balance-col-descripcion {
+    /* flexible */
+    min-width: 0;
+}
+
+.balance-col-debe,
+.balance-col-haber {
+    width: 160px;
+    text-align: right;
+}
+
+.balance-summary {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid;
+}
+
+.summary-item.balanced {
+    background: var(--success-bg);
+    border-color: var(--success-border);
+    color: var(--success);
+}
+
+.summary-item.unbalanced {
+    background: var(--danger-bg);
+    border-color: var(--danger-border);
+    color: var(--danger);
+}
+
+.summary-label {
+    color: inherit;
+    opacity: 0.75;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.7rem;
+}
+
+.summary-value {
+    font-weight: 700;
+    font-family: var(--font-mono);
+}
+
+/* ================================================
+   ESTADOS FINANCIEROS POR PERIODO (EFP)
+   ================================================ */
 
 .efp-loading {
     text-align: center;
     padding: 40px;
+    color: var(--text-muted);
 }
 
 .efp-error {
-    color: red;
+    color: var(--danger);
     text-align: center;
     padding: 20px;
 }
 
 .efp-wrapper {
-    padding: 20px;
-    background-color: #f7fafc;
-    min-height: 100vh;
+    padding: 0;
+    background: transparent;
+    min-height: auto;
 }
 
 .efp-card-balance {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    margin-bottom: 40px;
+    background: var(--bg-surface);
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 28px;
 }
 
 .efp-main-title {
     text-align: center;
-    color: #2d3748;
-    margin-bottom: 40px;
-    font-size: 1.8rem;
-    text-decoration: underline;
-    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
 }
 
 .efp-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 48px;
 }
 
 .efp-title-active {
-    color: #2b6cb0;
-    font-size: 1.4rem;
-    font-weight: bold;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
 }
 
 .efp-title-passive {
-    color: #c53030;
-    font-size: 1.4rem;
-    font-weight: bold;
+    color: var(--danger);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
 }
 
 .efp-title-equity {
-    color: #2f855a;
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-top: 30px;
+    color: var(--success);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 24px;
+    margin-bottom: 16px;
 }
 
 .efp-table-section {
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 .efp-section-title {
-    border-bottom: 2px solid #2d3748;
-    padding-bottom: 8px;
-    font-size: 1.2rem;
-    color: #1a202c;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
 }
 
 .efp-table,
 .efp-results-table {
     width: 100%;
     border-collapse: collapse;
+    background: transparent;
+    border: none;
+    border-radius: 0;
 }
 
 .efp-table {
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .efp-table-head-row {
-    color: #718096;
-    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-size: 0.72rem;
     text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 .efp-th-left {
     text-align: left;
-    padding: 8px;
+    padding: 6px 8px;
+    background: transparent;
+    font-size: 0.72rem;
+    border-bottom: 1px solid var(--border);
 }
 
 .efp-th-right {
     text-align: right;
-    padding: 8px;
+    padding: 6px 8px;
+    background: transparent;
+    font-size: 0.72rem;
+    border-bottom: 1px solid var(--border);
 }
 
 .efp-row {
-    border-bottom: 1px solid #edf2f7;
+    border-bottom: 1px solid var(--border);
+}
+
+.efp-row:hover {
+    background: rgba(59, 130, 246, 0.04);
 }
 
 .efp-cell-name {
     padding: 8px;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
 }
 
 .efp-cell-amount {
     padding: 8px;
     text-align: right;
     font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.83rem;
+    color: var(--text-primary);
 }
 
 .efp-empty {
-    padding: 15px;
-    color: #cbd5e0;
+    padding: 14px 8px;
+    color: var(--text-muted);
     font-style: italic;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-align: center;
 }
 
 .efp-total-row {
-    background-color: #f8fafc;
-    font-weight: bold;
+    background: rgba(255, 255, 255, 0.03);
+    font-weight: 700;
 }
 
 .efp-total-label {
-    padding: 12px;
+    padding: 10px 8px;
     text-align: right;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 .efp-total-amount {
-    padding: 12px;
+    padding: 10px 8px;
     text-align: right;
-    border-top: 2px solid #2d3748;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 .efp-grand-total {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
-    background-color: #2d3748;
-    color: #fff;
-    border-radius: 8px;
-    margin-top: 20px;
-    font-weight: bold;
+    padding: 14px 16px;
+    background: var(--bg-surface-2);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-md);
+    margin-top: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 .efp-grand-total-amount {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    font-family: var(--font-mono);
+    color: var(--accent);
 }
 
 .efp-subtotal {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 2.5px double #cbd5e0;
-    margin-bottom: 25px;
-    font-weight: bold;
+    padding: 8px 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
 }
 
 .efp-subtotal-passive {
-    color: #c53030;
+    color: var(--danger);
 }
 
 .efp-subtotal-equity {
-    color: #2f855a;
+    color: var(--success);
 }
 
 .efp-profit {
-    padding: 15px;
-    border-radius: 10px;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    border: 1px solid;
 }
 
 .efp-profit span:first-child {
-    font-weight: bold;
-    color: #2d3748;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
 }
 
 .efp-profit.positive {
-    background-color: #f0fff4;
-    border: 1px solid #c6f6d5;
+    background: var(--success-bg);
+    border-color: var(--success-border);
 }
 
 .efp-profit.negative {
-    background-color: #fff5f5;
-    border: 1px solid #fed7d7;
+    background: var(--danger-bg);
+    border-color: var(--danger-border);
 }
 
 .efp-profit-amount {
-    font-weight: bold;
+    font-weight: 700;
+    font-family: var(--font-mono);
 }
 
 .efp-profit-amount.positive {
-    color: #2f855a;
+    color: var(--success);
 }
 
 .efp-profit-amount.negative {
-    color: #c53030;
+    color: var(--danger);
 }
 
 .efp-card-results {
-    background-color: #fff;
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 850px;
+    background: var(--bg-surface);
+    padding: 36px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    max-width: 820px;
     margin: 0 auto;
-    border: 1px solid #e2e8f0;
 }
 
 .efp-results-header {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
 }
 
 .efp-results-header h2 {
     margin: 0;
-    font-size: 1.7rem;
-    font-weight: 900;
-    text-decoration: overline;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-primary);
 }
 
 .efp-results-header p {
-    color: #718096;
-    font-weight: bold;
-    margin-top: 5px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-top: 6px;
+    font-size: 0.8rem;
 }
 
 .efp-results-cell {
-    padding: 12px;
+    padding: 10px 12px;
+    color: var(--text-secondary);
+    font-size: 0.87rem;
 }
 
 .efp-results-amount {
-    padding: 12px;
+    padding: 10px 12px;
     text-align: right;
     font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-primary);
 }
 
 .efp-highlight-row {
-    background-color: #fffaf0;
-    font-weight: bold;
-    border-bottom: 2.5px solid #ed8936;
+    background: rgba(245, 158, 11, 0.07);
+    font-weight: 700;
+    border-bottom: 1px solid rgba(245, 158, 11, 0.2);
 }
 
 .efp-results-highlight-amount {
-    padding: 12px;
+    padding: 10px 12px;
     text-align: right;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--accent-gold);
 }
 
 .efp-results-other-expense {
-    padding: 12px;
+    padding: 10px 12px;
     text-align: right;
-    color: #c53030;
+    color: var(--danger);
+    font-family: var(--font-mono);
 }
 
 .efp-results-other-income {
-    padding: 12px;
+    padding: 10px 12px;
     text-align: right;
-    color: #2f855a;
+    color: var(--success);
+    font-family: var(--font-mono);
 }
 
 .efp-final-row {
-    background-color: #2d3748;
-    color: #fff;
+    background: var(--bg-surface-3);
 }
 
 .efp-final-label {
-    padding: 20px;
-    font-weight: 900;
-    border-radius: 0 0 0 10px;
+    padding: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    border-radius: 0 0 0 var(--radius-md);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 .efp-final-amount {
-    padding: 20px;
+    padding: 18px;
     text-align: right;
     font-weight: 900;
-    font-size: 1.4rem;
-    border-radius: 0 0 10px 0;
+    font-size: 1.2rem;
+    border-radius: 0 0 var(--radius-md) 0;
+    font-family: var(--font-mono);
+    color: var(--accent-gold);
 }
 
 .efp-results-footer {
     text-align: right;
-    margin-top: 15px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: #4a5568;
+    margin-top: 14px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
     text-transform: uppercase;
+    letter-spacing: 0.06em;
 }

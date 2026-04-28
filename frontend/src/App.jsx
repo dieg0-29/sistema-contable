@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { FaHome, FaPlus, FaBook, FaChartBar } from "react-icons/fa";
+import { FaChartLine } from 'react-icons/fa'
 import Navbar from './components/Navbar'
 import CuentasTable from './components/CuentasTable'
 import TransaccionForm from './components/TransaccionForm'
@@ -20,6 +20,15 @@ import {
   eliminarTodasTransacciones,
   eliminarTransaccion
 } from './services/transaccionesService'
+
+const VISTA_LABELS = {
+  cuentas:              'Catálogo de Cuentas',
+  transacciones:        'Nueva Transacción',
+  diario:               'Libro Diario',
+  mayor:                'Libro Mayor',
+  'balance-comprobacion': 'Balance de Comprobación',
+  'estados-periodo':    'Estados Financieros',
+}
 
 function App() {
   const [vista, setVista] = useState('cuentas')
@@ -174,49 +183,77 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      <h1 className="main-title">Sistema Contable</h1>
+    <div className="app-shell">
 
-      <Navbar vista={vista} setVista={setVista} />
+      {/* ── SIDEBAR ── */}
+      <aside className="sidebar">
+        <div className="sidebar-brand">
+          <div className="sidebar-brand-icon">
+            <FaChartLine />
+          </div>
+          <div className="sidebar-brand-text">
+            <span className="sidebar-brand-title">SisContable</span>
+            <span className="sidebar-brand-subtitle">Sistema Contable</span>
+          </div>
+        </div>
 
-      {vista === 'cuentas' && (
-        <CuentasTable cuentas={cuentas} loading={loading} error={error} />
-      )}
+        <Navbar vista={vista} setVista={setVista} />
 
-      {vista === 'transacciones' && (
-        <TransaccionForm onGuardado={recargarReportes} />
-      )}
+        <div className="sidebar-footer">
+          Grupo 2 &copy; 2025
+        </div>
+      </aside>
 
-      {vista === 'diario' && (
-        <DiarioTable
-          data={diario}
-          cuentas={cuentasMovimiento}
-          loading={loading}
-          error={error}
-          deletingId={deletingId}
-          deletingAll={deletingAll}
-          onEliminarTransaccion={manejarEliminarTransaccion}
-          onEliminarTodo={manejarEliminarTodo}
-          onEditarTransaccion={manejarEditarTransaccion}
-        />
-      )}
+      {/* ── MAIN ── */}
+      <div className="main-content">
+        <header className="main-header">
+          <div className="main-header-dot" />
+          <h1 className="main-header-title">{VISTA_LABELS[vista]}</h1>
+          <span className="main-header-breadcrumb">Sistema Contable</span>
+        </header>
 
-      {vista === 'mayor' && (
-        <MayorTable data={mayor} loading={loading} error={error} />
-      )}
+        <main className="page-content">
+          {vista === 'cuentas' && (
+            <CuentasTable cuentas={cuentas} loading={loading} error={error} />
+          )}
 
-      {vista === 'balance-comprobacion' && (
-        <BalanceComprobacionTable data={balanceComprobacion} loading={loading} error={error} />
-      )}
+          {vista === 'transacciones' && (
+            <TransaccionForm onGuardado={recargarReportes} />
+          )}
 
-      {vista === 'estados-periodo' && (
-        <EstadosFinancierosPeriodo
-          balance={balance}
-          resultados={resultados}
-          loading={loading}
-          error={error}
-        />
-      )}
+          {vista === 'diario' && (
+            <DiarioTable
+              data={diario}
+              cuentas={cuentasMovimiento}
+              loading={loading}
+              error={error}
+              deletingId={deletingId}
+              deletingAll={deletingAll}
+              onEliminarTransaccion={manejarEliminarTransaccion}
+              onEliminarTodo={manejarEliminarTodo}
+              onEditarTransaccion={manejarEditarTransaccion}
+            />
+          )}
+
+          {vista === 'mayor' && (
+            <MayorTable data={mayor} loading={loading} error={error} />
+          )}
+
+          {vista === 'balance-comprobacion' && (
+            <BalanceComprobacionTable data={balanceComprobacion} loading={loading} error={error} />
+          )}
+
+          {vista === 'estados-periodo' && (
+            <EstadosFinancierosPeriodo
+              balance={balance}
+              resultados={resultados}
+              loading={loading}
+              error={error}
+            />
+          )}
+        </main>
+      </div>
+
     </div>
   )
 }
