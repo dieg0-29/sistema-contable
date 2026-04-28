@@ -5,13 +5,15 @@ import CuentasTable from './components/CuentasTable'
 import TransaccionForm from './components/TransaccionForm'
 import DiarioTable from './components/DiarioTable'
 import MayorTable from './components/MayorTable'
-import EstadosFinancieros from './components/EstadosFinancieros'
+import BalanceComprobacionTable from './components/BalanceComprobacionTable'
+import EstadosFinancierosPeriodo from './components/EstadosFinancierosPeriodo';
 import { obtenerCuentas, obtenerCuentasMovimiento } from './services/cuentasService'
 import {
   obtenerBalanceGeneral,
   obtenerEstadoResultados,
   obtenerLibroDiario,
-  obtenerLibroMayor
+  obtenerLibroMayor,
+  obtenerBalanceComprobacion
 } from './services/reportesService'
 import {
   editarTransaccion,
@@ -28,6 +30,7 @@ function App() {
   const [mayor, setMayor] = useState([])
   const [balance, setBalance] = useState([])
   const [resultados, setResultados] = useState([])
+  const [balanceComprobacion, setBalanceComprobacion] = useState([])
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -62,6 +65,11 @@ function App() {
         setMayor(data)
       }
 
+      if (vistaActual === 'balance-comprobacion') {
+        const data = await obtenerBalanceComprobacion()
+        setBalanceComprobacion(data)
+      }
+
       if (vistaActual === 'estados') {
         const [dataBalance, dataResultados] = await Promise.all([
           obtenerBalanceGeneral(),
@@ -71,7 +79,18 @@ function App() {
         setBalance(dataBalance)
         setResultados(dataResultados)
       }
-    } catch (err) {
+
+      if (vistaActual === 'estados-periodo') {
+        const [dataBalance, dataResultados] = await Promise.all([
+          obtenerBalanceGeneral(),
+          obtenerEstadoResultados()
+        ])
+
+        setBalance(dataBalance)
+        setResultados(dataResultados)
+      }
+
+      } catch (err){
       setError(err.message || 'Ocurrió un error')
     } finally {
       setLoading(false)
@@ -87,6 +106,11 @@ function App() {
     if (vista === 'mayor') {
       const data = await obtenerLibroMayor()
       setMayor(data)
+    }
+
+    if (vista === 'balance-comprobacion') {
+      const data = await obtenerBalanceComprobacion()
+      setBalanceComprobacion(data)
     }
 
     if (vista === 'estados') {
@@ -181,8 +205,12 @@ function App() {
         <MayorTable data={mayor} loading={loading} error={error} />
       )}
 
-      {vista === 'estados' && (
-        <EstadosFinancieros
+      {vista === 'balance-comprobacion' && (
+        <BalanceComprobacionTable data={balanceComprobacion} loading={loading} error={error} />
+      )}
+
+      {vista === 'estados-periodo' && (
+        <EstadosFinancierosPeriodo
           balance={balance}
           resultados={resultados}
           loading={loading}
