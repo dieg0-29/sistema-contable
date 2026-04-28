@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .routes import cuentas, transacciones, reportes
+from app.routes import cuentas, transacciones, reportes
 
 load_dotenv()
 
@@ -13,7 +13,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "http://127.0.0.1:5173"
+        "http://127.0.0.1:5173",
+        "https://sistema-contable-1-cbkf.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
