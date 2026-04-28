@@ -33,10 +33,3 @@ uvicorn app.main:app --reload
 ```
 npm run dev
 ```
-
-## Variables de entorno
-Crear archivo .env con:
-```
-VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
-```
