@@ -45,8 +45,18 @@ export default function DiarioTable({
   )
 
   function formatearFecha(fecha) {
-    const d = new Date(fecha)
-    return d.toLocaleDateString('es-PE')
+    if (!fecha) return ''
+
+    const soloFecha = String(fecha).slice(0, 10)
+    const [year, month, day] = soloFecha.split('-')
+
+    return `${day}/${month}/${year}`
+  }
+
+  function obtenerFechaInput(fecha) {
+    if (!fecha) return ''
+
+    return String(fecha).slice(0, 10)
   }
 
   function formatearMonto(monto) {
@@ -94,7 +104,7 @@ export default function DiarioTable({
     setEditingId(transaccion.id_tsc)
     setEditError('')
     setEditForm({
-      fecha: String(transaccion.fecha_tsc).slice(0, 10),
+      fecha: obtenerFechaInput(transaccion.fecha_tsc),
       glosa: transaccion.glosa || '',
       lineas: lineasOrdenadas.map((linea) => ({
         id_cuenta: String(linea.id_cuenta || ''),

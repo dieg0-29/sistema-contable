@@ -7,6 +7,31 @@ export default function EstadosFinancierosPeriodo({ balance, resultados, loading
             maximumFractionDigits: 2
         });
 
+    const descargarEstadosFinancierosPDF = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/reportes/estados-financieros-periodo/pdf`);
+
+            if (!response.ok) {
+                throw new Error('No se pudo generar el PDF');
+            }
+
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'estados_financieros_periodo.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error(error);
+            alert('Error al descargar el PDF');
+        }
+    };
+
     const er = useMemo(() => {
         const sumByClass = (keyword) =>
             resultados
@@ -93,7 +118,17 @@ export default function EstadosFinancierosPeriodo({ balance, resultados, loading
         <div className="efp-wrapper">
 
             <div className="section-block efp-card-balance">
-                <h2 className="efp-main-title">Estado de Situación Financiera</h2>
+                <div className="efp-report-header">
+                    <h2 className="efp-main-title">Estado de Situación Financiera</h2>
+
+                    <button
+                        type="button"
+                        className="btn-primary"
+                        onClick={descargarEstadosFinancierosPDF}
+                    >
+                        Exportar PDF
+                    </button>
+                </div>
 
                 <div className="efp-grid">
                     <div>
@@ -205,29 +240,45 @@ export default function EstadosFinancierosPeriodo({ balance, resultados, loading
 function construirESF(balance, utilidadDelPeriodo) {
     const esCorriente = (item) => {
         const cod = item.cod_cuenta?.toString() || "";
-        if (cod.startsWith('1') && parseInt(cod.substring(0,2)) < 19) return true;
+
+        if (cod.startsWith('1') && parseInt(cod.substring(0, 2)) < 19) return true;
         if (cod.startsWith('2')) return true;
-        if (cod.startsWith('4') && parseInt(cod.substring(0,2)) < 49) return true;
+        if (cod.startsWith('4') && parseInt(cod.substring(0, 2)) < 49) return true;
+
         return false;
     };
+
     const activo = balance.filter(i => i.clasificacion_cuenta?.toUpperCase().includes('ACTIVO'));
     const pasivo = balance.filter(i => i.clasificacion_cuenta?.toUpperCase().includes('PASIVO'));
+
     const patrimonioBase = balance.filter(i => {
         const c = i.clasificacion_cuenta?.toUpperCase() || '';
-        return (c.includes('PATRIMONIO') || c.includes('CAPITAL')) && !c.includes('ACTIVO') && !c.includes('PASIVO');
+
+        return (
+            (c.includes('PATRIMONIO') || c.includes('CAPITAL')) &&
+            !c.includes('ACTIVO') &&
+            !c.includes('PASIVO')
+        );
     });
+
     const sum = (arr) => arr.reduce((s, i) => s + Number(i.saldo), 0);
+
     return {
         activoCorriente: activo.filter(i => esCorriente(i)),
         totalActivoCorriente: sum(activo.filter(i => esCorriente(i))),
+
         activoNoCorriente: activo.filter(i => !esCorriente(i)),
         totalActivoNoCorriente: sum(activo.filter(i => !esCorriente(i))),
+
         pasivoCorriente: pasivo.filter(i => esCorriente(i)),
         totalPasivoCorriente: sum(pasivo.filter(i => esCorriente(i))),
+
         pasivoNoCorriente: pasivo.filter(i => !esCorriente(i)),
         totalPasivoNoCorriente: sum(pasivo.filter(i => !esCorriente(i))),
+
         patrimonioBase,
         totalPatrimonio: sum(patrimonioBase) + utilidadDelPeriodo,
+
         totalActivo: sum(activo),
         totalPasivo: sum(pasivo)
     };
